@@ -1,6 +1,7 @@
 import tweepy
 import os
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()  # .env 파일 로드
 
@@ -22,14 +23,19 @@ client = tweepy.Client(
     access_token_secret=access_token_secret
 )
 
+# 트윗을 게시하는 현재 시간
+post_time = datetime.now()
+
 # 테스트 트윗 게시
 try:
-    response = client.create_tweet(text="Python을 이용한 자동 글 작성 테스트")
+    tweet_text = f"Python을 이용한 자동 글 작성 테스트 / 글 작성 시간 : {post_time.strftime('%Y년 %m월 %d일 %H시 %M분')}"
+    response = client.create_tweet(text=tweet_text)
     print(f"트윗이 성공적으로 게시되었습니다. Tweet ID: {response.data['id']}")
+    print(tweet_text)
+    
 except tweepy.TweepyException as e:
     print(f"트윗 게시 중 에러 발생: {e}")
     print(f"에러 코드: {e.api_code}")
     print(f"에러 메시지: {e.api_messages}")
-
 
 # 여기에 추가 기능 구현 (예: 실시간 데이터 수집, 주기적 트윗 게시 등)

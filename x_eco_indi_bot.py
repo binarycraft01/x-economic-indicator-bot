@@ -69,9 +69,10 @@ def extract_key_info(data):
     key_stats = data['KeyStatisticList']['row']
     important_stats = [
         '한국은행 기준금리',
+        '콜금리(익일물)',
         '원/달러 환율(종가)',
         '코스피지수',
-        '실업률'
+        '코스닥지수'
     ]
     
     result = []
@@ -80,7 +81,7 @@ def extract_key_info(data):
             value = stat['DATA_VALUE']
             unit = stat['UNIT_NAME'].strip() if stat['UNIT_NAME'] else ''
             date = format_date(stat['CYCLE'])
-            result.append(f"{stat['KEYSTAT_NAME']}: {value} {unit} (기준 날짜: {date})")
+            result.append(f"{stat['KEYSTAT_NAME']}: {value} {unit} ({date})")
     
     return '\n'.join(result)
 
@@ -88,7 +89,7 @@ def extract_key_info(data):
 # 작성한 X(Twitter) 트윗 내용을 생성하는 함수
 def create_tweet_content(key_info):
     post_time = datetime.now()
-    return f"작성시간: {post_time.strftime('%Y년 %m월 %d일 %H시 %M분')}\n\n경제 핵심 지표 업데이트:\n\n{key_info}"
+    return f"{key_info}\n\n트윗작성시간: {post_time.strftime('%Y년 %m월 %d일 %H시 %M분')}"
 
 # 트윗을 작성하고 게시하는 함수
 def post_tweet():

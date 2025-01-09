@@ -113,6 +113,20 @@ def post_tweet():
         logging.error(f"트윗 게시 중 에러 발생: {e}")
 
 
+# 스케줄 설정: 10분마다 트윗 게시
+schedule.every(10).minutes.do(post_tweet)
+
+# 메인 실행 부분
+if __name__ == "__main__":
+    logging.info("프로그램 시작")
+    while True:
+        try:
+            schedule.run_pending()
+            time.sleep(1)  # 1초마다 스케줄 확인
+        except Exception as e:
+            logging.error(f"예상치 못한 오류 발생: {e}")
+            time.sleep(60)  # 1분 대기 후 재시도
+
 # # 스케줄 설정: 매일 6시간 간격으로 트윗 게시
 # for hour in ["00:00", "06:00", "12:00", "18:00"]:
 #     schedule.every().day.at(hour).do(post_tweet)

@@ -89,7 +89,7 @@ def extract_key_info(data):
 # 작성한 X(Twitter) 트윗 내용을 생성하는 함수
 def create_tweet_content(key_info):
     post_time = datetime.now()
-    return f"{key_info}\n\n트윗작성시간: {post_time.strftime('%Y년 %m월 %d일 %H시 %M분')}"
+    return f"{key_info}"
 
 # 트윗을 작성하고 게시하는 함수
 def post_tweet():
@@ -113,8 +113,8 @@ def post_tweet():
         logging.error(f"트윗 게시 중 에러 발생: {e}")
 
 
-# 스케줄 설정: 10분마다 트윗 게시
-schedule.every(10).minutes.do(post_tweet)
+# 스케줄 설정: 1분마다 트윗 게시
+schedule.every(1).minutes.do(post_tweet)
 
 # 메인 실행 부분
 if __name__ == "__main__":
@@ -125,7 +125,7 @@ if __name__ == "__main__":
             time.sleep(1)  # 1초마다 스케줄 확인
         except Exception as e:
             logging.error(f"예상치 못한 오류 발생: {e}")
-            time.sleep(60)  # 1분 대기 후 재시도
+            time.sleep(30)  # 30초 대기 후 재시도
 
 # # 스케줄 설정: 매일 6시간 간격으로 트윗 게시
 # for hour in ["00:00", "06:00", "12:00", "18:00"]:

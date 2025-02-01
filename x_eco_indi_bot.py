@@ -89,7 +89,7 @@ def extract_key_info(data):
 ##### 작성한 X(Twitter) 트윗 내용을 생성하는 함수
 def create_tweet_content(key_info):
     post_time = datetime.now()
-    return f"{key_info}"
+    return f"{key_info}  testing!!!!!"
 
 ###### 트윗을 작성하고 게시하는 함수
 def post_tweet():
@@ -108,7 +108,7 @@ def post_tweet():
     try:
         response = client.create_tweet(text=tweet_text)
         logging.info(f"트윗이 성공적으로 게시되었습니다. Tweet ID: {response.data['id']}")
-        logging.info(f"게시된 트윗 내용:\n{tweet_text} testing!!!!!")
+        logging.info(f"게시된 트윗 내용:\n{tweet_text}")
     except tweepy.TweepyException as e:
         logging.error(f"트윗 게시 중 에러 발생: {e}")
 

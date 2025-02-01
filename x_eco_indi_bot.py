@@ -89,7 +89,8 @@ def extract_key_info(data):
 ##### 작성한 X(Twitter) 트윗 내용을 생성하는 함수
 def create_tweet_content(key_info):
     post_time = datetime.now()
-    return f"{key_info}  testing!!!!!"
+    post_time_str = post_time.strftime('%Y-%m-%d %H:%M')
+    return f"{key_info}\n{post_time_str}"
 
 ###### 트윗을 작성하고 게시하는 함수
 def post_tweet():
@@ -113,11 +114,15 @@ def post_tweet():
         logging.error(f"트윗 게시 중 에러 발생: {e}")
 
 
-# # 한국 시간에 맞춘 UTC 시간으로 설정
+""" # # 한국 시간에 맞춘 UTC 시간으로 설정
 schedule.every().day.at("00:00").do(post_tweet)  # 오전 9시 (한국 시간)
 schedule.every().day.at("06:00").do(post_tweet)  # 오후 3시 (한국 시간)
 schedule.every().day.at("12:00").do(post_tweet)  # 오후 9시 (한국 시간)
 schedule.every().day.at("18:00").do(post_tweet)  # 오전 3시 (한국 시간)
+ """
+# 10분 간격으로 트윗 게시
+schedule.every(10).minutes.do(post_tweet)
+
 
 # 메인 실행 부분
 if __name__ == "__main__":
@@ -136,6 +141,6 @@ if __name__ == "__main__":
 # 스케줄 없이 즉시 실행하려면 메인 실행 부분 주석 처리
 # 이후 해당 부분 주석 해제하고 실행
 
-#if __name__ == "__main__":
-#    logging.info("프로그램 시작")
-#    post_tweet()  # 즉시 트윗 게시
+""" if __name__ == "__main__":
+    logging.info("프로그램 시작")
+    post_tweet()  # 즉시 트윗 게시 """

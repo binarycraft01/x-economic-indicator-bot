@@ -108,7 +108,7 @@ def post_tweet():
     try:
         response = client.create_tweet(text=tweet_text)
         logging.info(f"트윗이 성공적으로 게시되었습니다. Tweet ID: {response.data['id']}")
-        logging.info(f"게시된 트윗 내용:\n{tweet_text}")
+        logging.info(f"게시된 트윗 내용:\n{tweet_text} testing!!!!!")
     except tweepy.TweepyException as e:
         logging.error(f"트윗 게시 중 에러 발생: {e}")
 

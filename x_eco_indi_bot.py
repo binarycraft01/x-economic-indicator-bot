@@ -114,21 +114,21 @@ def post_tweet():
 
 
 # # 한국 시간에 맞춘 UTC 시간으로 설정
-# schedule.every().day.at("00:00").do(post_tweet)  # 오전 9시 (한국 시간)
-# schedule.every().day.at("06:00").do(post_tweet)  # 오후 3시 (한국 시간)
-# schedule.every().day.at("12:00").do(post_tweet)  # 오후 9시 (한국 시간)
-# schedule.every().day.at("18:00").do(post_tweet)  # 오전 3시 (한국 시간)
+schedule.every().day.at("00:00").do(post_tweet)  # 오전 9시 (한국 시간)
+schedule.every().day.at("06:00").do(post_tweet)  # 오후 3시 (한국 시간)
+schedule.every().day.at("12:00").do(post_tweet)  # 오후 9시 (한국 시간)
+schedule.every().day.at("18:00").do(post_tweet)  # 오전 3시 (한국 시간)
 
-# # 메인 실행 부분
-# if __name__ == "__main__":
-#     logging.info("프로그램 시작")
-#     while True:
-#         try:
-#             schedule.run_pending()
-#             time.sleep(60)  # 1분마다 스케줄 확인
-#         except Exception as e:
-#             logging.error(f"예상치 못한 오류 발생: {e}")
-#             time.sleep(300)  # 5분 대기 후 재시도
+# 메인 실행 부분
+if __name__ == "__main__":
+    logging.info("프로그램 시작")
+    while True:
+        try:
+            schedule.run_pending()
+            time.sleep(60)  # 1분마다 스케줄 확인
+        except Exception as e:
+            logging.error(f"예상치 못한 오류 발생: {e}")
+            time.sleep(300)  # 5분 대기 후 재시도
 
 
 ### 개발 테스트용 ###
@@ -136,6 +136,6 @@ def post_tweet():
 # 스케줄 없이 즉시 실행하려면 메인 실행 부분 주석 처리
 # 이후 해당 부분 주석 해제하고 실행
 
-if __name__ == "__main__":
-    logging.info("프로그램 시작")
-    post_tweet()  # 즉시 트윗 게시
+#if __name__ == "__main__":
+#    logging.info("프로그램 시작")
+#    post_tweet()  # 즉시 트윗 게시

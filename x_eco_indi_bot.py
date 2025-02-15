@@ -88,9 +88,9 @@ def extract_key_info(data):
 
 ##### 작성한 X(Twitter) 트윗 내용을 생성하는 함수
 def create_tweet_content(key_info):
-    post_time = datetime.now()
-    post_time_str = post_time.strftime('%Y년%m월%d일 %H:%M')
-    return f"{key_info}\n작성시간:{post_time_str}"
+    # post_time = datetime.now()
+    # post_time_str = post_time.strftime('%Y년%m월%d일 %H:%M')
+    return f"{key_info}"
 
 ###### 트윗을 작성하고 게시하는 함수
 def post_tweet():

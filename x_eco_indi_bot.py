@@ -118,20 +118,20 @@ def post_tweet():
 # # UTC 기준으로 변환 (KST = UTC+9)
 # # 한국 오전 9시 → UTC 00:00
 # # 한국 오후 6시 → UTC 09:00
-# schedule.every().day.at("00:00").do(post_tweet)  # 한국 오전 9시
-# schedule.every().day.at("09:00").do(post_tweet)  # 한국 오후 6시
+schedule.every().day.at("00:00").do(post_tweet)  # 한국 오전 9시
+schedule.every().day.at("09:00").do(post_tweet)  # 한국 오후 6시
 
 
 # # 메인 실행 부분
-# if __name__ == "__main__":
-#     logging.info("프로그램 시작")
-#     while True:
-#         try:
-#             schedule.run_pending()
-#             time.sleep(60)  # 1분마다 스케줄 확인
-#         except Exception as e:
-#             logging.error(f"예상치 못한 오류 발생: {e}")
-#             time.sleep(300)  # 5분 대기 후 재시도
+if __name__ == "__main__":
+    logging.info("프로그램 시작")
+    while True:
+        try:
+            schedule.run_pending()
+            time.sleep(60)  # 1분마다 스케줄 확인
+        except Exception as e:
+            logging.error(f"예상치 못한 오류 발생: {e}")
+            time.sleep(300)  # 5분 대기 후 재시도
 
 
 ### 개발 테스트용 ###
@@ -139,6 +139,6 @@ def post_tweet():
 # 스케줄 없이 즉시 실행하려면 메인 실행 부분 주석 처리
 # 이후 해당 부분 주석 해제하고 실행
 
-if __name__ == "__main__":
-    logging.info("프로그램 시작")
-    post_tweet()  # 즉시 트윗 게시
+# if __name__ == "__main__":
+#     logging.info("프로그램 시작")
+#     post_tweet()  # 즉시 트윗 게시
